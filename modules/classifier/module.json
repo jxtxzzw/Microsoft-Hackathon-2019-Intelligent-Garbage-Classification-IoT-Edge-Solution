@@ -1,0 +1,17 @@
+{
+  "$schema-version": "0.0.5",
+  "description": "",
+  "image": {
+    "repository": "zzwhackathon.azurecr.io/classifier",
+    "tag": {
+      "version": "0.0.5",
+      "platforms": {
+        "amd64": "./Dockerfile",
+        "amd64.debug": "./Dockerfile",
+        "arm32v7": "./Dockerfile"
+      }
+    },
+    "buildOptions": []
+  },
+  "language": "python"
+}

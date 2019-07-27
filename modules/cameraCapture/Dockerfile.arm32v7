@@ -1,0 +1,21 @@
+FROM resin/raspberrypi3-debian:stretch
+
+WORKDIR /app
+
+ADD ./test_image.jpg .
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libboost-python1.62.0 python3-pip libpython3-dev fswebcam build-essential python-dev rpi.gpio libatlas-base-dev && \
+    rm -rf /var/lib/apt/lists/* 
+
+RUN pip3 install --upgrade pip 
+RUN pip3 install --upgrade setuptools 
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+# RUN useradd -ms /bin/bash moduleuser
+# USER moduleuser
+
+ENTRYPOINT [ "python3", "-u", "./main.py" ]
